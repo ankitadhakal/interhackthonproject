@@ -1,20 +1,53 @@
-const gems = [
-    { name: "Bandipur Hill Town", lat: 27.9392, lng: 84.4168 },
-    { name: "Kopan Monastery", lat: 27.7285, lng: 85.3622 },
-    { name: "Tansen Bazaar", lat: 27.8673, lng: 83.5469 },
-    { name: "Khopra Ridge", lat: 28.4350, lng: 83.6820 }
-];
-
-let targetGem = gems[Math.floor(Math.random() * gems.length)];
+let gems = [];
+let targetGem = null;
 let attempts = 5;
+let gameOver = false;
 
-const map = L.map('map').setView([27.85, 84.50], 8);
+const map = L.map('map', {
+    dragging: false,
+    zoomControl: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false
+}).setView([27.85, 84.50], 8);
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+// Fix map rendering bug inside CSS Grid layouts
+setTimeout(() => {
+    map.invalidateSize();
+}, 200);
 
 const statusEl = document.getElementById('radar-status');
 const hintEl = document.getElementById('radar-hint');
 const attemptsEl = document.getElementById('attempts-val');
 const resetBtn = document.getElementById('reset-radar-btn');
+
+async function fetchGems() {
+    try {
+        const response = await fetch('../json/gems.json');
+        gems = await response.json();
+        initGame();
+    } catch (error) {
+        gems = [
+            { name: "Bandipur Hill Town", lat: 27.9392, lng: 84.4168 },
+            { name: "Kopan Monastery", lat: 27.7285, lng: 85.3622 },
+            { name: "Tansen Bazaar", lat: 27.8673, lng: 83.5469 },
+            { name: "Khopra Ridge", lat: 28.4350, lng: 83.6820 }
+        ];
+        initGame();
+    }
+}
+
+function initGame() {
+    targetGem = gems[Math.floor(Math.random() * gems.length)];
+    attempts = 5;
+    gameOver = false;
+    attemptsEl.textContent = attempts;
+    statusEl.textContent = "Radar Active";
+    hintEl.textContent = "Click anywhere on the map to triangulate.";
+}
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371;
@@ -27,22 +60,29 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 }
 
 map.on('click', (e) => {
-    if (attempts <= 0) return;
+    if (gameOver || attempts <= 0 || !targetGem) return;
 
-    L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+    const pulseIcon = L.divIcon({
+        html: '<div style="font-size: 24px; text-align: center;">📍</div>',
+        className: 'custom-emoji-marker',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+    });
+    L.marker([e.latlng.lat, e.latlng.lng], { icon: pulseIcon }).addTo(map);
+
     const dist = calculateDistance(e.latlng.lat, e.latlng.lng, targetGem.lat, targetGem.lng);
 
-    if (dist <= 15) {
+    if (dist <= 25) {
         statusEl.textContent = "SUCCESS!";
         hintEl.textContent = `You found ${targetGem.name}!`;
-        L.marker([targetGem.lat, targetGem.lng], {
-            icon: L.icon({
-                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
-            })
-        }).addTo(map).bindPopup(`Found: ${targetGem.name}`).openPopup();
-        attempts = 0;
+        const successIcon = L.divIcon({
+            html: '<div style="font-size: 32px; text-align: center;">🏆</div>',
+            className: 'custom-emoji-marker',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        });
+        L.marker([targetGem.lat, targetGem.lng], { icon: successIcon }).addTo(map).bindPopup(`Found: ${targetGem.name}`).openPopup();
+        gameOver = true;
     } else {
         attempts--;
         attemptsEl.textContent = attempts;
@@ -51,7 +91,7 @@ map.on('click', (e) => {
             hintEl.textContent = "You are very close to the hidden location.";
         } else if (dist < 150) {
             statusEl.textContent = "Warm ☀️";
-            hintEl.textContent = "Getting closer, keep searching.";
+            hintEl.textContent = "Getting closer, keep scanning.";
         } else {
             statusEl.textContent = "Cold ❄️";
             hintEl.textContent = "Far away from the hidden spot.";
@@ -60,22 +100,20 @@ map.on('click', (e) => {
         if (attempts === 0) {
             statusEl.textContent = "Game Over ❌";
             hintEl.textContent = `The gem was at ${targetGem.name}.`;
-            L.marker([targetGem.lat, targetGem.lng], {
-                icon: L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
-                })
-            }).addTo(map).bindPopup(`Secret: ${targetGem.name}`).openPopup();
+            const failIcon = L.divIcon({
+                html: '<div style="font-size: 32px; text-align: center;">💎</div>',
+                className: 'custom-emoji-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            });
+            L.marker([targetGem.lat, targetGem.lng], { icon: failIcon }).addTo(map).bindPopup(`Secret: ${targetGem.name}`).openPopup();
+            gameOver = true;
         }
     }
 });
 
 resetBtn.addEventListener('click', () => {
-    targetGem = gems[Math.floor(Math.random() * gems.length)];
-    attempts = 5;
-    attemptsEl.textContent = attempts;
-    statusEl.textContent = "Radar Active";
-    hintEl.textContent = "Click anywhere on the map to triangulate.";
     location.reload();
 });
+
+fetchGems();

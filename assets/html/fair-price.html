@@ -5,20 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/universal.css">
-    <title>Document</title>
+    <style>
+        .price-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .price-hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .price-hero h1 {
+            font-size: 2.8rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .price-hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .price-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.95rem;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .item-cost {
+            color: #0f172a;
+            font-weight: 700;
+        }
+    </style>
+    <title>Trip Nep - Fair Price Index</title>
 </head>
 
 <body>
     <header>
         <nav class="nav-bar">
-            <!-- Left: Logo -->
             <div class="logo-container">
-                <span class="logo-icon">🏯</span>
-                <p class="name">Trip<span class="red-text">Nep</span> <span class="flag">🇳🇵</span></p>
+                <a href="/assets/html/index.html">
+                    <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                </a>
             </div>
-
             <ul class="nav-list">
-                <li><a class="active" href="/assets/html/index.html">Home</a></li>
+                <li><a href="/assets/html/index.html">Home</a></li>
                 <li><a href="/assets/html/explore.html">Explore</a></li>
                 <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
@@ -26,10 +99,67 @@
                 <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
                 <li><a href="/assets/html/about.html">About Us</a></li>
             </ul>
-
             <a href="#" class="nav-cta">Plan Your Trip</a>
         </nav>
     </header>
+
+    <main class="price-container">
+        <section class="price-hero">
+            <h1>Fair Price Index</h1>
+            <p>Know standard local cost ranges for transport, food, and daily essentials across Nepal to travel smart
+                and avoid overpaying.</p>
+        </section>
+
+        <section class="price-grid">
+            <div class="price-card">
+                <h3>🚕 Transportation</h3>
+                <div class="price-item">
+                    <span class="item-name">Taxi Flag-down / Meter Base</span>
+                    <span class="item-cost">Rs. 50 - 60</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">City Taxi Ride (Short Distance)</span>
+                    <span class="item-cost">Rs. 300 - 600</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">Local Bus Ticket (City Route)</span>
+                    <span class="item-cost">Rs. 25 - 45</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <h3>🍲 Food & Dining</h3>
+                <div class="price-item">
+                    <span class="item-name">Local Dal Bhat Set (Standard)</span>
+                    <span class="item-cost">Rs. 200 - 450</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">Bottled Mineral Water (1L)</span>
+                    <span class="item-cost">Rs. 20 - 30</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">Masala Tea / Chai Cup</span>
+                    <span class="item-cost">Rs. 30 - 60</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <h3>🏔️ Trekking & Permits</h3>
+                <div class="price-item">
+                    <span class="item-name">TIMS Card (Trekker Permit)</span>
+                    <span class="item-cost">Rs. 2,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">National Park Entry Fee</span>
+                    <span class="item-cost">Rs. 3,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="item-name">Mountain Teahouse Room (Night)</span>
+                    <span class="item-cost">Rs. 500 - 1,000</span>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

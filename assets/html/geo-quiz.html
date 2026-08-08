@@ -7,131 +7,31 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="/assets/css/universal.css">
-    <style>
-        .game-layout {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 25px;
-        }
-
-        @media(max-width: 900px) {
-            .game-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .game-panel {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .game-panel h2 {
-            font-size: 1.5rem;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-
-        .quiz-box {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #cbd5e1;
-            margin: 20px 0;
-        }
-
-        .quiz-box h4 {
-            color: #2563eb;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .quiz-box p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: #f1f5f9;
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-card span {
-            display: block;
-            font-size: 0.75rem;
-            color: #64748b;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .stat-card strong {
-            font-size: 1.2rem;
-            color: #0f172a;
-        }
-
-        .action-btn {
-            width: 100%;
-            background: #0f172a;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .action-btn:hover {
-            background: #2563eb;
-        }
-
-        #map {
-            width: 100%;
-            height: 600px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e2e8f0;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/geo-quiz.css">
+   
     <title>Trip Nep - Province Pinpoint</title>
 </head>
 
 <body>
-    <header>
-        <nav class="nav-bar">
-            <div class="logo-container">
-                <span class="logo-icon">🏯</span>
-                <p class="name">Trip<span class="red-text">Nep</span> <span class="flag">🇳🇵</span></p>
-            </div>
-            <ul class="nav-list">
-                <li><a href="/assets/html/index.html">Home</a></li>
-                <li><a class="active" href="/assets/html/explore.html">Explore</a></li>
-                <li><a href="/assets/html/map.html">Map</a></li>
-                <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
-                <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
-                <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
-                <li><a href="/assets/html/about.html">About Us</a></li>
-            </ul>
-            <a href="#" class="nav-cta">Plan Your Trip</a>
-        </nav>
-    </header>
+<header>
+    <nav class="nav-bar">
+        <div class="logo-container">
+            <a href="/assets/html/index.html">
+                <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+            </a>
+        </div>
+        <ul class="nav-list">
+            <li><a href="/assets/html/index.html">Home</a></li>
+            <li><a href="/assets/html/explore.html">Explore</a></li>
+            <li><a href="/assets/html/map.html">Map</a></li>
+            <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
+            <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
+            <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
+            <li><a href="/assets/html/about.html">About Us</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Plan Your Trip</a>
+    </nav>
+</header>
 
     <main class="game-layout">
         <div class="game-panel">
@@ -167,77 +67,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script>
-        const targets = [
-            { name: "Pokhara", lat: 28.2096, lng: 83.9856 },
-            { name: "Kathmandu", lat: 27.7172, lng: 85.3240 },
-            { name: "Biratnagar", lat: 26.4525, lng: 87.2718 },
-            { name: "Dharan", lat: 26.8140, lng: 87.2830 },
-            { name: "Butwal", lat: 27.7005, lng: 83.4484 }
-        ];
-
-        let currentIdx = 0;
-        let score = 0;
-        let round = 1;
-        let activeMarker = null;
-
-        const map = L.map('map').setView([28.3949, 84.1240], 7);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
-
-        const targetNameEl = document.getElementById('target-name');
-        const scoreEl = document.getElementById('quiz-score');
-        const roundEl = document.getElementById('quiz-round');
-        const nextBtn = document.getElementById('next-round-btn');
-
-        function loadTarget() {
-            targetNameEl.textContent = targets[currentIdx].name;
-            if (activeMarker) map.removeLayer(activeMarker);
-        }
-
-        function calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371;
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        }
-
-        map.on('click', (e) => {
-            const t = targets[currentIdx];
-            if (activeMarker) map.removeLayer(activeMarker);
-
-            activeMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map).bindPopup("Your Drop").openPopup();
-            const dist = calculateDistance(e.latlng.lat, e.latlng.lng, t.lat, t.lng);
-
-            if (dist <= 25) {
-                score += 200;
-                scoreEl.textContent = score;
-                alert(`Great job! Only ${dist.toFixed(1)} km away.`);
-            } else {
-                alert(`Too far! You were ${dist.toFixed(1)} km away from ${t.name}.`);
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIdx++;
-            if (currentIdx >= targets.length) {
-                alert(`Game finished! Final Score: ${score}`);
-                currentIdx = 0;
-                score = 0;
-                round = 1;
-            } else {
-                round++;
-            }
-            roundEl.textContent = `${round} / ${targets.length}`;
-            scoreEl.textContent = score;
-            loadTarget();
-            map.setView([28.3949, 84.1240], 7);
-        });
-
-        loadTarget();
-    </script>
+    <script src="/assets/js/geo-quiz.js"></script>
 </body>
 
 </html>

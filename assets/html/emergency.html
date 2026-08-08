@@ -1,23 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/universal.css">
-    <title>Document</title>
-</head>
-<body>
+    <style>
+        .sos-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
+        .sos-hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sos-hero h1 {
+            font-size: 2.8rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .sos-hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .sos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .sos-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 5px solid #dc2626;
+        }
+
+        .sos-card h3 {
+            font-size: 1.3rem;
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sos-card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .sos-number {
+            display: inline-block;
+            background-color: #fef2f2;
+            color: #dc2626;
+            font-size: 1.4rem;
+            font-weight: 800;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .sos-number:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+    </style>
+    <title>Trip Nep - Emergency SOS</title>
+</head>
+
+<body>
     <header>
         <nav class="nav-bar">
-            
             <div class="logo-container">
-                <span class="logo-icon">🏯</span>
-                <p class="name">Trip<span class="red-text">Nep</span> <span class="flag">🇳🇵</span></p>
+                <a href="/assets/html/index.html">
+                    <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                </a>
             </div>
-    
             <ul class="nav-list">
-                <li><a class="active" href="/assets/html/index.html">Home</a></li>
+                <li><a href="/assets/html/index.html">Home</a></li>
                 <li><a href="/assets/html/explore.html">Explore</a></li>
                 <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
@@ -25,10 +103,52 @@
                 <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
                 <li><a href="/assets/html/about.html">About Us</a></li>
             </ul>
-    
             <a href="#" class="nav-cta">Plan Your Trip</a>
         </nav>
     </header>
-    
+
+    <main class="sos-container">
+        <section class="sos-hero">
+            <h1>Emergency Assistance Hub</h1>
+            <p>Immediate access to verified helpline numbers, rescue coordination, and tourist safety support across
+                Nepal.</p>
+        </section>
+
+        <section class="sos-grid">
+            <div class="sos-card">
+                <div>
+                    <h3>Tourist Police Nepal</h3>
+                    <p>Dedicated assistance for travelers, handling security complaints, lost items, and tourist
+                        disputes in major cities.</p>
+                </div>
+                <a href="tel:1144" class="sos-number">📞 1144</a>
+            </div>
+
+            <div class="sos-card">
+                <div>
+                    <h3>General Police Emergency</h3>
+                    <p>Immediate law enforcement response for crimes, urgent security threats, or critical dangers.</p>
+                </div>
+                <a href="tel:100" class="sos-number">📞 100</a>
+            </div>
+
+            <div class="sos-card">
+                <div>
+                    <h3>Ambulance & Medical Aid</h3>
+                    <p>Urgent medical evacuation, hospital assistance, and emergency paramedic dispatch.</p>
+                </div>
+                <a href="tel:102" class="sos-number">📞 102</a>
+            </div>
+
+            <div class="sos-card">
+                <div>
+                    <h3>Fire & Rescue Service</h3>
+                    <p>Rapid deployment for fire outbreaks, structural collapses, and disaster mitigation.</p>
+                </div>
+                <a href="tel:101" class="sos-number">📞 101</a>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>

@@ -1,92 +1,88 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', 'Gill Sans', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
     background-color: #f8fafc;
-}
-
-a {
-    text-decoration: none;
+    color: #0f172a;
 }
 
 header {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 24px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-.logo-icon {
-    font-size: 24px;
+.logo-container a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
-.name {
-    font-size: 22px;
-    font-weight: 800;
-    color: #111827;
-}
-
-.red-text {
-    color: #dc2626;
-}
-
-.flag {
-    font-size: 16px;
+.logo-img {
+    height: 78px;
+    width: auto;
+    object-fit: contain;
+    margin: -6px 0;
+    filter: contrast(150%) brightness(1.05);
 }
 
 .nav-list {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 28px;
+    align-items: center;
 }
 
-.nav-list li a {
-    color: #374151;
-    font-weight: 600;
+.nav-list a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
     font-size: 0.95rem;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
+    transition: color 0.2s;
 }
 
-.nav-list li a:hover {
+.nav-list a:hover,
+.nav-list a.active {
     color: #dc2626;
-}
-
-.nav-list li a.active {
-    color: #dc2626;
-    border-bottom: 2px solid #dc2626;
 }
 
 .nav-cta {
-    background-color: #dc2626;
+    background: #dc2626;
     color: white;
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
 }
 
 .nav-cta:hover {
-    background-color: #b91c1c;
+    background: #b91c1c;
+}
+
+@media(max-width: 950px) {
+    .nav-list {
+        display: none;
+    }
 }
