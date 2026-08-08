@@ -25,11 +25,13 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 4px 24px;
+    overflow: hidden;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .logo-container a {
@@ -39,11 +41,12 @@ header {
 }
 
 .logo-img {
-    height: 78px;
+    height: 95px;
     width: auto;
     object-fit: contain;
-    margin: -6px 0;
-    filter: contrast(150%) brightness(1.05);
+    /* This filter forces near-white JPEG background artifacts to become pure white, blending the box away */
+    filter: contrast(130%) brightness(1.04);
+    margin: -18px 0;
 }
 
 .nav-list {
