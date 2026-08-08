@@ -20,13 +20,42 @@ document.addEventListener("DOMContentLoaded", () => {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    function onMapClick(e) {
-        const marker = L.marker(e.latlng, { icon: greenMarkerIcon }).addTo(map);
-        marker.bindPopup(`Selected location<br>Lat: ${e.latlng.lat.toFixed(4)}, Lng: ${e.latlng.lng.toFixed(4)}`).openPopup();
-    }
-    map.on('click', onMapClick);
+    let startMarker = null;
+    let destMarker = null;
+    let startCoords = null;
+    let destCoords = null;
+    let routeLine = null;
 
-    async function handleSearch(inputId, pinIcon) {
+    async function drawRoute() {
+        if (!startCoords || !destCoords) return;
+
+        if (routeLine) {
+            map.removeLayer(routeLine);
+        }
+
+        const url = `https://router.project-osrm.org/route/v1/driving/${startCoords.lng},${startCoords.lat};${destCoords.lng},${destCoords.lat}?overview=full&geometries=geojson`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.routes && data.routes.length > 0) {
+                const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+                routeLine = L.polyline(routeCoordinates, {
+                    color: '#2563eb',
+                    weight: 5,
+                    opacity: 0.8
+                }).addTo(map);
+
+                const bounds = L.latLngBounds([startCoords, destCoords]);
+                map.fitBounds(bounds, { padding: [60, 60] });
+            }
+        } catch (err) {
+            console.error('Routing error:', err);
+        }
+    }
+
+    async function handleSearch(inputId, pinIcon, isStart) {
         const inputField = document.getElementById(inputId);
         if (!inputField) return;
 
@@ -42,15 +71,34 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
 
             if (data.length > 0) {
-                const { lat, lon, display_name } = data[0];
+                const lat = parseFloat(data[0].lat);
+                const lon = parseFloat(data[0].lon);
+                const displayName = data[0].display_name;
+                const latlng = { lat, lng: lon };
 
-                map.flyTo([lat, lon], 14);
-                L.marker([lat, lon], { icon: pinIcon })
-                    .addTo(map)
-                    .bindPopup(`<b>${display_name}</b>`)
-                    .openPopup();
+                if (isStart) {
+                    if (startMarker) map.removeLayer(startMarker);
+                    startCoords = latlng;
+                    startMarker = L.marker(latlng, { icon: pinIcon })
+                        .addTo(map)
+                        .bindPopup(`<b>Start:</b> ${displayName}`);
+                    startMarker.openPopup();
+                } else {
+                    if (destMarker) map.removeLayer(destMarker);
+                    destCoords = latlng;
+                    destMarker = L.marker(latlng, { icon: pinIcon })
+                        .addTo(map)
+                        .bindPopup(`<b>Destination:</b> ${displayName}`);
+                    destMarker.openPopup();
+                }
+
+                if (startCoords && destCoords) {
+                    drawRoute();
+                } else {
+                    map.flyTo(latlng, 14);
+                }
             } else {
-                alert('Location not found. Try searching for another place!');
+                alert('Location not found.');
             }
         } catch (err) {
             console.error('Search error:', err);
@@ -62,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                handleSearch('custom-search', greenMarkerIcon);
+                handleSearch('custom-search', greenMarkerIcon, true);
             }
         });
     }
@@ -72,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         destInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                handleSearch('destination-search', redMarkerIcon);
+                handleSearch('destination-search', redMarkerIcon, false);
             }
         });
     }

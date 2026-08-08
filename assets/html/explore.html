@@ -6,33 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/universal.css">
     <link rel="stylesheet" href="/assets/css/explore.css">
-    <title>Trip Nep -Explore</title>
+    <title>Trip Nep - Explore Mini-Games</title>
 </head>
 
 <body>
-
     <header>
         <nav class="nav-bar">
-            <!-- Left: Logo -->
             <div class="logo-container">
                 <span class="logo-icon">🏯</span>
                 <p class="name">Trip<span class="red-text">Nep</span> <span class="flag">🇳🇵</span></p>
             </div>
-    
+
             <ul class="nav-list">
-                <li><a class="active" href="#">Home</a></li>
-                <li><a href="/assets/html/explore.html">Explore</a></li>
+                <li><a href="/assets/html/index.html">Home</a></li>
+                <li><a class="active" href="/assets/html/explore.html">Explore</a></li>
                 <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
                 <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
                 <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
                 <li><a href="/assets/html/about.html">About Us</a></li>
             </ul>
-    
+
             <a href="#" class="nav-cta">Plan Your Trip</a>
         </nav>
     </header>
 
+    <main class="explore-container">
+        <section class="explore-hero">
+            <h1>Travel Adventure Hub</h1>
+            <p>Transform your journey across Nepal into an interactive experience. Choose a map-based mini-game,
+                complete travel quests, and earn score multipliers the further you explore!</p>
+        </section>
+
+        <section class="games-grid">
+            <div class="game-card">
+                <div class="game-badge">Distance Multiplier</div>
+                <h3>Quest Hunter</h3>
+                <p>Select a destination challenge and travel to heritage sites. The system calculates your distance from
+                    the starting coordinate—the farther away the quest target, the higher your score reward!</p>
+                <a href="/assets/html/quest-hunter.html" class="game-btn">Play Quest Hunter</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-badge">Proximity Radar</div>
+                <h3>Hidden Gem Radar</h3>
+                <p>Track down secret, off-the-beaten-path locations across Nepal. Use proximity indicators on the live
+                    map to guide you closer to hidden cultural spots.</p>
+                <a href="/assets/html/gem-radar.html" class="game-btn">Start Radar Game</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-badge">Geography Challenge</div>
+                <h3>Province Pinpoint</h3>
+                <p>Test your topographical knowledge of Nepal's districts and landmarks. Drop map markers accurately
+                    within time limits to secure top spots on the leaderboard.</p>
+                <a href="/assets/html/geo-quiz.html" class="game-btn">Play Map Quiz</a>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
