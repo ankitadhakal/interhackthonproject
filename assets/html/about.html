@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/universal.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/about.css">
+    <title>Trip Nep - About Us</title>
 </head>
 
 <body>
@@ -14,22 +15,122 @@
         <nav class="nav-bar">
             <div class="logo-container">
                 <a href="/assets/html/index.html">
-                    <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    <div class="logo-crop">
+                        <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    </div>
                 </a>
             </div>
             <ul class="nav-list">
                 <li><a href="/assets/html/index.html">Home</a></li>
                 <li><a href="/assets/html/explore.html">Explore</a></li>
-                <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
                 <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
                 <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
                 <li><a href="/assets/html/about.html">About Us</a></li>
             </ul>
-            <a href="#" class="nav-cta">Plan Your Trip</a>
+            <a href="/assets/html/map.html" class="nav-cta">Interactive Map</a>
         </nav>
     </header>
 
+
+    <main>
+        <section class="about-hero">
+            <div class="hero-image-placeholder">
+                <img src="/img/grp.jpeg" alt="Team TripNep">
+            </div>
+            <div class="hero-content">
+                <h1>Meet the Team Behind TripNep</h1>
+                <p>We are a dedicated group of developers, innovators, and explorers passionate about blending
+                    technology with global discovery.</p>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="mission-container">
+                <h2>Our Mission</h2>
+                <p>
+                    TripNep was built to revolutionize the way people explore the world. From gamified geography
+                    challenges like <strong>Quest Hunter</strong> to cultural etiquette guides and fair price indexes,
+                    our goal is to make travel planning and geographical education interactive, engaging, and accessible
+                    to everyone.
+                </p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>The Minds Behind the Code</h2>
+            <div class="team-grid">
+
+                <div class="team-card">
+                    <div class="profile-placeholder">
+                        <img src="/img/harshita.jpeg" alt="Harshita Ghimire">
+                    </div>
+                    <h3>Harshita Ghimire</h3>
+                    <span class="role">Team Leader</span>
+                    <p class="bio">Driving the project vision and overseeing the core architecture to ensure a seamless
+                        user experience.</p>
+                    <a href="https://github.com/Mystic-hars" target="_blank" class="github-link">
+                        View GitHub
+                    </a>
+                </div>
+
+                <div class="team-card">
+                    <div class="profile-placeholder">
+                        <img src="/img/anku.jpeg" alt="Ankita Dhakal">
+                    </div>
+                    <h3>Ankita Dhakal</h3>
+                    <span class="role">Tech lead</span>
+                    <p class="bio">Specializes in frontend dynamics and ensuring our interactive maps and tools run
+                        flawlessly.</p>
+                    <a href="/img/anku.jpeg" target="_blank" class="github-link">
+                        View GitHub
+                    </a>
+                </div>
+
+                <div class="team-card">
+                    <div class="profile-placeholder">
+                        <img src="/img/aarosh.jpeg" alt="Aarosh Niraula">
+                    </div>
+                    <h3>Aarosh Niraula</h3>
+                    <span class="role">Front End </span>
+                    <p class="bio">Focuses on game logic, data integration, and bringing features like Quest Hunter to
+                        life.</p>
+                    <a href="https://github.com/sushant5101" target="_blank" class="github-link">
+                        View GitHub
+                    </a>
+                </div>
+
+                <div class="team-card">
+                    <div class="profile-placeholder">
+                        <img src="/img/deekshyaDD.jpg" alt="Deekshya Dahal">
+                    </div>
+                    <h3>Deekshya Dahal</h3>
+                    <span class="role">Data base lead</span>
+                    <p class="bio">Passionate about UI/UX design, accessibility, and translating complex data into
+                        user-friendly layouts.</p>
+                    <a href="https://github.com/deeksyad-dev" target="_blank" class="github-link">
+                        View GitHub
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+    </script>
 </body>
 
 </html>
