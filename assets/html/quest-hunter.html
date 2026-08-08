@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="/assets/css/universal.css">
-    <link rel="stylesheet" href="/assets/css/quest-hunter.css">
+    <link rel="stylesheet" href="../css/universal.css">
+    <link rel="stylesheet" href="../css/quest-hunter.css">
     <title>Trip Nep - Quest Hunter</title>
 </head>
 
@@ -15,12 +15,13 @@
     <header>
         <nav class="nav-bar">
             <div class="logo-container">
-                <span class="logo-icon">🏯</span>
-                <p class="name">Trip<span class="red-text">Nep</span> <span class="flag">🇳🇵</span></p>
+                <a href="/assets/html/index.html">
+                    <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                </a>
             </div>
             <ul class="nav-list">
                 <li><a href="/assets/html/index.html">Home</a></li>
-                <li><a class="active" href="/assets/html/explore.html">Explore</a></li>
+                <li><a href="/assets/html/explore.html">Explore</a></li>
                 <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
                 <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
@@ -35,17 +36,13 @@
         <div class="game-panel">
             <div>
                 <h2>Quest Hunter</h2>
-                <p style="color: #64748b; font-size: 0.9rem;">Find the target location on the map. Higher distance from
-                    baseline earns larger multipliers!</p>
-
+                <p class="instruction-text">Click on the map to place your guess marker, then click Submit Guess. Closer
+                    guesses earn higher multipliers and score points!</p>
                 <div class="quest-box">
-                    <span
-                        style="font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Current
-                        Quest</span>
+                    <span class="quest-label">Current Quest</span>
                     <h4 id="quest-title">Loading Quest...</h4>
-                    <p id="quest-desc">Loading description...</p>
+                    <p id="quest-desc">Fetching dynamic quest data...</p>
                 </div>
-
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span>Score</span>
@@ -57,18 +54,17 @@
                     </div>
                 </div>
             </div>
-
-            <button class="action-btn" id="next-quest-btn">Next Quest</button>
+            <div class="button-group">
+                <button class="action-btn" id="submit-guess-btn">Submit Guess</button>
+                <button class="action-btn secondary-btn" id="next-quest-btn" style="display:none;">Next Quest</button>
+            </div>
         </div>
-
         <div id="map"></div>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <script src="/assets/js/quest-hunter.js"></script>
-
+    <script src="../js/quest-hunter.js"></script>
 </body>
 
 </html>

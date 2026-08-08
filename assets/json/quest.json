@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Muktinath Temple",
+        "desc": "A sacred Vishnu temple perched high at altitude in Mustang.",
+        "lat": 28.8167,
+        "lng": 83.8667
+    },
+    {
+        "title": "Rara Lake",
+        "desc": "The biggest freshwater lake in the Nepali Himalayas located in Mugu.",
+        "lat": 29.5397,
+        "lng": 82.1281
+    },
+    {
+        "title": "Lumbini Maya Devi Temple",
+        "desc": "The birthplace of Siddhartha Gautama Buddha in the Terai plains.",
+        "lat": 27.4705,
+        "lng": 83.2752
+    },
+    {
+        "title": "Pashupatinath Temple",
+        "desc": "The iconic sprawling Hindu temple complex on the banks of Bagmati.",
+        "lat": 27.7105,
+        "lng": 85.3487
+    },
+    {
+        "title": "Janaki Mandir",
+        "desc": "A striking marble masterpiece located in Janakpur.",
+        "lat": 26.7290,
+        "lng": 85.9224
+    }
+]
