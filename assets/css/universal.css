@@ -15,7 +15,13 @@ header {
     border-bottom: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
+    overflow: hidden;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-bar {
@@ -24,7 +30,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 24px;
+    padding: 10px 24px;
 }
 
 .logo-container {
@@ -38,12 +44,24 @@ header {
     text-decoration: none;
 }
 
+.logo-crop {
+    height: 52px;
+    width: 175px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .logo-img {
-    height: 78px;
+    height: 130px;
     width: auto;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
     object-fit: contain;
-    margin: -6px 0;
-    filter: contrast(150%) brightness(1.05);
+    filter: contrast(130%) brightness(1.04);
 }
 
 .nav-list {

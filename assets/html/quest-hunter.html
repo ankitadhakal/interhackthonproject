@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="../css/universal.css">
-    <link rel="stylesheet" href="../css/quest-hunter.css">
+    <link rel="stylesheet" href="/assets/css/universal.css">
+    <link rel="stylesheet" href="/assets/css/quest-hunter.css">
     <title>Trip Nep - Quest Hunter</title>
 </head>
 
@@ -16,19 +16,20 @@
         <nav class="nav-bar">
             <div class="logo-container">
                 <a href="/assets/html/index.html">
-                    <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    <div class="logo-crop">
+                        <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    </div>
                 </a>
             </div>
             <ul class="nav-list">
                 <li><a href="/assets/html/index.html">Home</a></li>
                 <li><a href="/assets/html/explore.html">Explore</a></li>
-                <li><a href="/assets/html/map.html">Map</a></li>
                 <li><a href="/assets/html/fair-price.html">Fair Price Index</a></li>
                 <li><a href="/assets/html/culture.html">Culture & Etiquette</a></li>
                 <li><a href="/assets/html/emergency.html">Emergency SOS</a></li>
                 <li><a href="/assets/html/about.html">About Us</a></li>
             </ul>
-            <a href="#" class="nav-cta">Plan Your Trip</a>
+            <a href="/assets/html/map.html" class="nav-cta">Interactive Map</a>
         </nav>
     </header>
 
@@ -36,13 +37,32 @@
         <div class="game-panel">
             <div>
                 <h2>Quest Hunter</h2>
-                <p class="instruction-text">Click on the map to place your guess marker, then click Submit Guess. Closer
-                    guesses earn higher multipliers and score points!</p>
+                <p class="instruction-text">Select a country or random mode, explore the map using city and town labels
+                    to find the target, click to place your guess, and submit!</p>
+
                 <div class="quest-box">
-                    <span class="quest-label">Current Quest</span>
+                    <label class="quest-label" for="country-select">Select Country / Region</label>
+                    <select id="country-select" class="country-dropdown">
+                        <option value="RANDOM">🎲 Random World</option>
+                        <option value="NP">🇳🇵 Nepal</option>
+                        <option value="JP">🇯🇵 Japan</option>
+                        <option value="CH">🇨🇭 Switzerland</option>
+                        <option value="US">🇺🇸 United States</option>
+                        <option value="FR">🇫🇷 France</option>
+                        <option value="IT">🇮🇹 Italy</option>
+                        <option value="IN">🇮🇳 India</option>
+                        <option value="GB">🇬🇧 United Kingdom</option>
+                        <option value="DE">🇩🇪 Germany</option>
+                        <option value="AU">🇦🇺 Australia</option>
+                        <option value="CA">🇨🇦 Canada</option>
+                        <option value="BR">🇧🇷 Brazil</option>
+                    </select>
+
+                    <span class="quest-label" style="margin-top: 15px;">Current Quest</span>
                     <h4 id="quest-title">Loading Quest...</h4>
                     <p id="quest-desc">Fetching dynamic quest data...</p>
                 </div>
+
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span>Score</span>
@@ -64,7 +84,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="../js/quest-hunter.js"></script>
+    <script src="/assets/js/quest-hunter.js"></script>
 </body>
 
 </html>
