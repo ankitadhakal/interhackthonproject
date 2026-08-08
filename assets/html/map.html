@@ -12,9 +12,32 @@
 </head>
 
 <body>
+    <header>
+        <nav class="nav-bar">
+            <p class="name">TRIP <span class="orange">NEP</span></p>
+            <ul class="nav-list">
+                <li><a class="explore active" href="/assets/html/explore.html">Explore</a></li>
+                <li><a class="CTA" href="/assets/html/map.html">Navigate Map</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
 
-    <div id="map"></div>
+        <div class="controls">
+            <div class="startLocation">
+                <img src="/img/Gpin.png" alt="">
+                <input class="startLocation-input" type="text" placeholder="startLocation">
+            </div>
+            <div class="destination">
+                <img src="/img/Rpin.png" alt="">
+                <input class="destination-input" type="text" placeholder="destination Location">
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+    </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
