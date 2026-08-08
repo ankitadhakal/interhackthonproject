@@ -1,0 +1,38 @@
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#map {
+    border: 3px solid rgb(199, 197, 197);
+    border-radius: 10px;
+    height: 95vh;
+    width: 100vw;
+}
+
+.controls {}
+
+.startLocation img,
+.destination img {
+    width: 30px;
+}
+
+.startLocation input,
+.destination input {
+    padding: 10px;
+    font-weight: bold;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid gray;
+}
+
+.startLocation,
+.destination {
+    background-color: rgba(255, 255, 255, 0.733);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
