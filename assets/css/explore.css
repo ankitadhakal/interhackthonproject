@@ -1,0 +1,99 @@
+.explore-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.explore-hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.explore-hero h1 {
+    font-size: 3rem;
+    color: #0f172a;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.explore-hero p {
+    font-size: 1.15rem;
+    color: #64748b;
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.game-badge {
+    display: inline-block;
+    background-color: #fef2f2;
+    color: #dc2626;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+.game-card h3 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.game-card p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.game-btn {
+    display: inline-block;
+    text-align: center;
+    background-color: #0f172a;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.game-btn:hover {
+    background-color: #dc2626;
+}
+
+.nav-list li a.active {
+    color: #dc2626;
+    border-bottom: 2px solid #dc2626;
+}
