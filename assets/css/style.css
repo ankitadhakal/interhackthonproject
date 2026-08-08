@@ -1,0 +1,49 @@
+.container {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5)), url('../../img/patanSquare.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    padding: 30px;
+    height: 400px;
+}
+
+.slogan {
+    border: 2px solid rgb(206, 203, 203);
+    padding: 5px 10px;
+    border-radius: 16px;
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    font-size: 70px;
+    width: 400px;
+    margin: 5px 0px;
+}
+
+.moto {
+    font-size: larger;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+    color: rgb(199, 198, 198);
+}
+
+.mid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heading{
+    font-size: 40px;
+}
+
+.mountain{
+    width: 50px;
+}
