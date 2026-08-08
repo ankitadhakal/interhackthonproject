@@ -1,5 +1,5 @@
 .container {
-    background-image: linear-gradient(rgba(17, 24, 39, 0.4), rgba(17, 24, 39, 0.7)), url("/img/patanSquare.jpg");
+    background-image: linear-gradient(rgba(17, 24, 39, 0.4), rgba(17, 24, 39, 0.7)), url("../../img/patanSquare.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
