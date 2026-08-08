@@ -107,23 +107,6 @@ $result = mysqli_query($conn, $sql);
             </div>
         </section>
 
-        <!-- Dynamic Quest Map Section (MySQL Loop) -->
-        <section id="quest-map" style="max-width: 1200px; margin: 40px auto 80px auto; padding: 0 20px;">
-            <h2 style="font-size: 2rem; color: #1e293b; font-weight: 800; margin-bottom: 20px; text-align: center;">🗺️ Cultural Quest Map Locations</h2>
-
-            <?php if (mysqli_num_rows($result) > 0): ?>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div style="background: white; border: 1px solid #f1f5f9; border-left: 6px solid #dc2626; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
-                        <h3 style="font-size: 1.3rem; color: #1e293b; font-weight: 700; margin-bottom: 8px;"><?php echo htmlspecialchars($row['spot_name']); ?></h3>
-                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">📍 <strong>Region:</strong> <?php echo htmlspecialchars($row['region']); ?></p>
-                        <p style="color: #334155; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6;"><?php echo htmlspecialchars($row['description']); ?></p>
-                        <span style="background: #fef3c7; color: #d97706; padding: 4px 14px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;"><?php echo htmlspecialchars($row['category']); ?></span>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p style="text-align: center; color: #64748b;">No quest spots found in the database.</p>
-            <?php endif; ?>
-        </section>
 
     </main>
 
