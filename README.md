@@ -1,4 +1,3 @@
-# interhackthonproject
 # TRIPNEP 🇳🇵 — Travel Smart, Travel Safe in Nepal
 A field-specific tourism companion for exploring authentic local quest spots, checking anti-scam fair prices, learning Nepali culture & phrases, and accessing 1-click emergency safety.
 
