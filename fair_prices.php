@@ -1,7 +1,7 @@
 <?php
 require_once 'config/db.php';
 
-// Fetch all fair price records from MySQL
+// Fetch fair prices from database
 $sql = "SELECT * FROM fair_prices ORDER BY id ASC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -11,9 +11,6 @@ $result = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripNep - Fair Price Index</title>
-
-    <!-- Corrected Relative Path to Aarosh's CSS stylesheet -->
     <link rel="stylesheet" href="assets/css/universal.css">
     <style>
         .price-container {
@@ -88,82 +85,69 @@ $result = mysqli_query($conn, $sql);
             color: #0f172a;
             font-weight: 700;
         }
-
-        .category-tag {
-            font-size: 0.75rem;
-            background-color: #e0f2fe;
-            color: #0369a1;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 700;
-        }
     </style>
+    <title>TripNep - Fair Price Index</title>
 </head>
 
 <body>
-    <!-- Aarosh's Header Navbar -->
     <header>
         <nav class="nav-bar">
             <div class="logo-container">
                 <a href="index.php">
-                    <img src="img/logo.jpeg" alt="TripNep Logo" class="logo-img" style="height: 40px;">
+                    <div class="logo-crop">
+                        <img src="img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    </div>
                 </a>
             </div>
             <ul class="nav-list">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="index.php#explore">Explore</a></li>
-                <li><a href="map.php">Map</a></li>
+                <li><a href="explore.php">Explore</a></li>
                 <li><a href="fair_prices.php" class="active">Fair Price Index</a></li>
                 <li><a href="etiquette.php">Culture & Etiquette</a></li>
                 <li><a href="emergency.php">Emergency SOS</a></li>
                 <li><a href="about.php">About Us</a></li>
             </ul>
-            <a href="emergency.php" class="nav-cta">Plan Your Trip</a>
+            <a href="map.php" class="nav-cta">Interactive Map</a>
         </nav>
     </header>
 
     <main class="price-container">
-        <!-- Hero Banner Section -->
         <section class="price-hero">
             <h1>Fair Price Index</h1>
             <p>Know standard local cost ranges for transport, food, and daily essentials across Nepal to travel smart and avoid overpaying.</p>
         </section>
 
-        <!-- Dynamic MySQL Price Grid -->
+        <!-- Dynamic MySQL Price Cards Grid -->
         <section class="price-grid">
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <div class="price-card">
                         <h3>
                             <span>🏷️ <?php echo htmlspecialchars($row['item_name']); ?></span>
-                            <span class="category-tag"><?php echo htmlspecialchars($row['category']); ?></span>
+                            <span style="font-size:0.75rem; background:#fef3c7; color:#d97706; padding:3px 10px; border-radius:12px;"><?php echo htmlspecialchars($row['category']); ?></span>
                         </h3>
-
                         <div class="price-item">
-                            <span class="item-name">Fair Local Rate (NPR)</span>
-                            <span class="item-cost"><?php echo htmlspecialchars($row['price_npr']); ?></span>
+                            <span class="item-name">Fair Rate (NPR)</span>
+                            <span class="item-cost" style="color:#059669;"><?php echo htmlspecialchars($row['price_npr']); ?></span>
                         </div>
-
                         <div class="price-item">
-                            <span class="item-name">Approximate USD ($)</span>
+                            <span class="item-name">Approx. USD ($)</span>
                             <span class="item-cost"><?php echo htmlspecialchars($row['price_usd']); ?></span>
                         </div>
-
-                        <div class="price-item" style="flex-direction: column; gap: 4px;">
+                        <div class="price-item" style="flex-direction: column; gap: 4px; border-bottom: none;">
                             <span class="item-name" style="color: #0f172a; font-weight: 600;">💡 Local Advice:</span>
                             <span style="color: #64748b; font-size: 0.88rem; line-height: 1.5;"><?php echo htmlspecialchars($row['tips']); ?></span>
                         </div>
                     </div>
                 <?php endwhile; ?>
-            <?php else: ?>
-                <p style="text-align: center; color: #64748b; grid-column: 1 / -1;">No price records found in the database.</p>
             <?php endif; ?>
         </section>
     </main>
 
-    <footer style="background: #0f172a; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: 40px;">
-        <p>TripNep 🇳🇵 - Travel Smart, Respect Culture, Travel Responsibly</p>
+    <footer style="background: #0f172a; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 0.9rem;">
+        <p>TripNep 🇳🇵 - Travel Smart & Avoid Scams</p>
     </footer>
+
 </body>
 
 </html>
