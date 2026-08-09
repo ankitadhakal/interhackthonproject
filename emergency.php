@@ -1,7 +1,7 @@
 <?php
 require_once 'config/db.php';
 
-// Fetch all emergency contacts from database
+// Fetch emergency contacts from database
 $sql = "SELECT * FROM emergency_contacts ORDER BY id ASC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -11,9 +11,6 @@ $result = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripNep - Emergency SOS</title>
-
-  
     <link rel="stylesheet" href="assets/css/universal.css">
     <style>
         .sos-container {
@@ -88,55 +85,46 @@ $result = mysqli_query($conn, $sql);
             border-radius: 10px;
             text-decoration: none;
             text-align: center;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s;
         }
 
         .sos-number:hover {
             background-color: #dc2626;
             color: #ffffff;
         }
-
-        .category-tag {
-            font-size: 0.75rem;
-            background-color: #fee2e2;
-            color: #dc2626;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 700;
-        }
     </style>
+    <title>TripNep - Emergency SOS</title>
 </head>
 
 <body>
-   
     <header>
         <nav class="nav-bar">
             <div class="logo-container">
                 <a href="index.php">
-                    <img src="img/logo.jpeg" alt="TripNep Logo" class="logo-img" style="height: 40px;">
+                    <div class="logo-crop">
+                        <img src="img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                    </div>
                 </a>
             </div>
             <ul class="nav-list">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="index.php#explore">Explore</a></li>
-                <li><a href="map.php">Map</a></li>
+                <li><a href="explore.php">Explore</a></li>
                 <li><a href="fair_prices.php">Fair Price Index</a></li>
                 <li><a href="etiquette.php">Culture & Etiquette</a></li>
                 <li><a href="emergency.php" class="active">Emergency SOS</a></li>
                 <li><a href="about.php">About Us</a></li>
             </ul>
-            <a href="emergency.php" class="nav-cta">Plan Your Trip</a>
+            <a href="map.php" class="nav-cta">Interactive Map</a>
         </nav>
     </header>
 
     <main class="sos-container">
-     
         <section class="sos-hero">
             <h1>Emergency Assistance Hub</h1>
             <p>Immediate access to verified helpline numbers, rescue coordination, and tourist safety support across Nepal.</p>
         </section>
 
-       
+        <!-- Dynamic SOS Grid from MySQL -->
         <section class="sos-grid">
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -144,7 +132,7 @@ $result = mysqli_query($conn, $sql);
                         <div>
                             <h3>
                                 <span><?php echo htmlspecialchars($row['service_name']); ?></span>
-                                <span class="category-tag"><?php echo htmlspecialchars($row['category']); ?></span>
+                                <span style="font-size:0.75rem; background:#fee2e2; color:#dc2626; padding:2px 8px; border-radius:10px;"><?php echo htmlspecialchars($row['category']); ?></span>
                             </h3>
                             <p style="font-size: 0.85rem; color: #1e3a8a; margin-bottom: 6px;">📍 Location: <?php echo htmlspecialchars($row['location']); ?></p>
                             <p><?php echo htmlspecialchars($row['description']); ?></p>
@@ -154,13 +142,11 @@ $result = mysqli_query($conn, $sql);
                         </a>
                     </div>
                 <?php endwhile; ?>
-            <?php else: ?>
-                <p style="text-align: center; color: #64748b; grid-column: 1 / -1;">No emergency contact numbers found in database.</p>
             <?php endif; ?>
         </section>
     </main>
 
-    <footer style="background: #0f172a; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: 40px;">
+    <footer style="background: #0f172a; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 0.9rem;">
         <p>TripNep 🇳🇵 - Stay Calm & Safe. Help is just one call away.</p>
     </footer>
 </body>
