@@ -1,41 +1,34 @@
-<?php
-require_once 'config/db.php';
-
-// Fetch phrases from database
-$sql = "SELECT * FROM phrases ORDER BY id ASC";
-$phrases_result = mysqli_query($conn, $sql);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/universal.css">
-    <link rel="stylesheet" href="assets/css/culture.css">
+    <link rel="stylesheet" href="/assets/css/universal.css">
+    <link rel="stylesheet" href="/assets/css/culture.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>TripNep - Culture & Etiquette</title>
+    <title>Trip Nep - Culture & Etiquette</title>
 </head>
 
 <body>
     <header>
         <nav class="nav-bar">
             <div class="logo-container">
-                <a href="index.php">
+                <a href="/html/index.html">
                     <div class="logo-crop">
-                        <img src="img/logo.jpeg" alt="TripNep Logo" class="logo-img">
+                        <img src="/img/logo.jpeg" alt="TripNep Logo" class="logo-img">
                     </div>
                 </a>
             </div>
             <ul class="nav-list">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="explore.php">Explore</a></li>
-                <li><a href="fair_prices.php">Fair Price Index</a></li>
-                <li><a href="etiquette.php" class="active">Culture & Etiquette</a></li>
-                <li><a href="emergency.php">Emergency SOS</a></li>
-                <li><a href="about.php">About Us</a></li>
+                <li><a href="/html/index.html" class="active">Home</a></li>
+                <li><a href="/html/explore.html">Explore</a></li>
+                <li><a href="/html/fair-price.html">Fair Price Index</a></li>
+                <li><a href="/html/culture.html">Culture & Etiquette</a></li>
+                <li><a href="/html/emergency.html">Emergency SOS</a></li>
+                <li><a href="/html/about.html">About Us</a></li>
             </ul>
-            <a href="map.php" class="nav-cta">Interactive Map</a>
+            <a href="/html/map.html" class="nav-cta">Interactive Map</a>
         </nav>
     </header>
 
@@ -54,7 +47,6 @@ $phrases_result = mysqli_query($conn, $sql);
                 <button class="tab-btn" onclick="switchTab('phrases')">Everyday Nepali Phrases</button>
             </div>
 
-            <!-- Tab 1: Do's and Don'ts -->
             <div id="dos-donts" class="tab-content active">
                 <div class="rules-grid">
 
@@ -92,7 +84,7 @@ $phrases_result = mysqli_query($conn, $sql);
                         </h3>
                         <ul class="rule-list">
                             <li>
-                                <i class="fa-solid fa-hand icon-dont"></i>
+                                <i class="fa-solid fa-head-side-hand-interaction icon-dont"></i>
                                 <span>Don't touch people's heads.</span>
                             </li>
                             <li>
@@ -100,7 +92,7 @@ $phrases_result = mysqli_query($conn, $sql);
                                 <span>Don't point your feet towards people or deities.</span>
                             </li>
                             <li>
-                                <i class="fa-solid fa-camera icon-dont"></i>
+                                <i class="fa-solid fa-camera-slash icon-dont"></i>
                                 <span>Don't take photos inside temples.</span>
                             </li>
                             <li>
@@ -117,33 +109,48 @@ $phrases_result = mysqli_query($conn, $sql);
 
                 <div class="reminder-banner">
                     <i class="fa-solid fa-map-location-dot"></i>
-                    <p><strong>Remember:</strong> When in doubt, observe and follow the locals. Your respect makes your journey more meaningful.</p>
+                    <p><strong>Remember:</strong> When in doubt, observe and follow the locals. Your respect makes your
+                        journey more meaningful.</p>
                 </div>
             </div>
 
-            <!-- Tab 2: Dynamic Phrases from MySQL -->
             <div id="phrases" class="tab-content" style="display: none;">
                 <div class="phrases-grid">
-                    <?php if (mysqli_num_rows($phrases_result) > 0): ?>
-                        <?php while ($phrase = mysqli_fetch_assoc($phrases_result)): ?>
-                            <div class="phrase-card">
-                                <h4><?php echo htmlspecialchars($phrase['english_phrase']); ?> (<?php echo htmlspecialchars($phrase['nepali_phrase']); ?>)</h4>
-                                <p>🗣️ Phonetic: <em><?php echo htmlspecialchars($phrase['phonetic']); ?></em></p>
-                                <span style="font-size:0.75rem; background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:10px; margin-top:8px; display:inline-block;"><?php echo htmlspecialchars($phrase['category']); ?></span>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                    <div class="phrase-card">
+                        <h4>Namaste (नमस्ते)</h4>
+                        <p>Hello / Greetings (literal: I bow to the divine in you).</p>
+                    </div>
+                    <div class="phrase-card">
+                        <h4>Dhanyabad (धन्यवाद)</h4>
+                        <p>Thank you.</p>
+                    </div>
+                    <div class="phrase-card">
+                        <h4>Kasto chha? (कस्तो छ?)</h4>
+                        <p>How are you?</p>
+                    </div>
+                    <div class="phrase-card">
+                        <h4>Thik chha (ठीक छ)</h4>
+                        <p>I am fine / It's okay.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="background: #0f172a; color: #94a3b8; text-align: center; padding: 30px 20px; font-size: 0.9rem;">
-        <p>TripNep 🇳🇵 - Respect Culture, Travel Responsibly</p>
-    </footer>
-
-    <!-- Aarosh's Tab Switching JS -->
     <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
