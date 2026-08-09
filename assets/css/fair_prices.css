@@ -1,0 +1,80 @@
+.price-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.price-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.price-hero h1 {
+    font-size: 2.8rem;
+    color: #0f172a;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.price-hero p {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.price-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.price-card h3 {
+    font-size: 1.3rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.item-cost {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+footer {
+    background: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+}
