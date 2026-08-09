@@ -7,12 +7,6 @@
     gap: 25px;
 }
 
-@media(max-width: 900px) {
-    .game-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
 .game-panel {
     background: #ffffff;
     padding: 25px;
@@ -98,4 +92,36 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border: 2px solid #e2e8f0;
+}
+
+@media(max-width: 900px) {
+    .game-layout {
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    #map {
+        height: 450px;
+    }
+}
+
+@media(max-width: 480px) {
+    .game-layout {
+        margin: 15px auto;
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .game-panel {
+        padding: 15px;
+    }
+
+    .game-panel h2 {
+        font-size: 1.3rem;
+    }
+
+    #map {
+        height: 350px;
+    }
 }

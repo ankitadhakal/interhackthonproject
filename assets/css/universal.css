@@ -11,7 +11,9 @@ body {
 }
 
 header {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
@@ -25,12 +27,12 @@ header {
 }
 
 .nav-bar {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 24px;
+    padding: 14px 32px;
 }
 
 .logo-container {
@@ -45,8 +47,8 @@ header {
 }
 
 .logo-crop {
-    height: 52px;
-    width: 175px;
+    height: 48px;
+    width: 160px;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -54,7 +56,7 @@ header {
 }
 
 .logo-img {
-    height: 130px;
+    height: 120px;
     width: auto;
     position: absolute;
     left: 0px;
@@ -67,7 +69,7 @@ header {
 .nav-list {
     display: flex;
     list-style: none;
-    gap: 28px;
+    gap: 32px;
     align-items: center;
 }
 
@@ -76,7 +78,24 @@ header {
     color: #64748b;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #dc2626;
+    transition: width 0.2s ease;
+}
+
+.nav-list a:hover::after,
+.nav-list a.active::after {
+    width: 100%;
 }
 
 .nav-list a:hover,
@@ -87,20 +106,50 @@ header {
 .nav-cta {
     background: #dc2626;
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 10px 22px;
+    border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: background 0.2s;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+    transition: all 0.2s ease;
 }
 
 .nav-cta:hover {
     background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
 }
 
 @media(max-width: 950px) {
     .nav-list {
         display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    .nav-bar {
+        padding: 12px 20px;
+    }
+
+    .logo-crop {
+        width: 145px;
+        height: 44px;
+    }
+}
+
+@media(max-width: 480px) {
+    .nav-bar {
+        padding: 10px 15px;
+    }
+
+    .logo-crop {
+        width: 130px;
+        height: 40px;
+    }
+
+    .nav-cta {
+        padding: 8px 14px;
+        font-size: 0.85rem;
     }
 }
