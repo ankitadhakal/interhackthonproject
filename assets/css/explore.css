@@ -97,3 +97,52 @@
     color: #dc2626;
     border-bottom: 2px solid #dc2626;
 }
+
+@media(max-width: 768px) {
+    .explore-container {
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+
+    .explore-hero {
+        margin-bottom: 35px;
+    }
+
+    .explore-hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .explore-hero p {
+        font-size: 1.05rem;
+    }
+
+    .games-grid {
+        gap: 20px;
+    }
+
+    .game-card {
+        padding: 25px 20px;
+    }
+}
+
+@media(max-width: 480px) {
+    .explore-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .explore-hero p {
+        font-size: 0.95rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-card {
+        padding: 20px 15px;
+    }
+
+    .game-card h3 {
+        font-size: 1.3rem;
+    }
+}

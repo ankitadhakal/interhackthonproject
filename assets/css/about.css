@@ -16,11 +16,6 @@
     height: 100%;
     object-fit: cover;
     opacity: 1;
-    /* Changed from 0.6 to 1 to remove the faded look */
-
-    /* Adjust this percentage to move the image up or down inside the box. 
-       0% shows the very top, 50% is middle, 100% is bottom. 
-       20% to 30% usually works great for group photos! */
     object-position: center 45%;
 }
 
@@ -161,13 +156,76 @@
     background-color: #334155;
 }
 
+
 @media(max-width: 768px) {
+    .hero-image-placeholder {
+        height: 300px;
+    }
+
     .hero-content {
         margin: -40px 20px 0;
-        padding: 30px 15px;
+        padding: 30px 20px;
     }
 
     .hero-content h1 {
         font-size: 2rem;
+    }
+
+    .mission-section {
+        padding: 50px 20px;
+    }
+
+    .mission-container h2,
+    .team-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .team-section {
+        margin: 40px auto;
+    }
+
+    .team-grid {
+        gap: 20px;
+    }
+}
+
+@media(max-width: 480px) {
+    .hero-image-placeholder {
+        height: 220px;
+    }
+
+    .hero-content {
+        margin: -30px 15px 0;
+        padding: 20px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .mission-section {
+        padding: 40px 15px;
+    }
+
+    .mission-container h2,
+    .team-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .mission-container p {
+        font-size: 0.95rem;
+    }
+
+    .team-card {
+        padding: 20px 15px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 }
