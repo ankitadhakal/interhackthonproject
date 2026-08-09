@@ -13,11 +13,10 @@
 
 .hero-section {
     position: relative;
-<<<<<<< HEAD
-=======
     background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url("/img/patanSquare.jpg");
+}
+
 .container {
->>>>>>> e6f39e8d3c97b82097988780317c3bbb45b229a8
     background-image: linear-gradient(rgba(17, 24, 39, 0.4), rgba(17, 24, 39, 0.7)), url("../../img/patanSquare.jpg");
     background-repeat: no-repeat;
     background-position: center;
